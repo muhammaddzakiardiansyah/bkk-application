@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>bkk</title>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
   </head>
   <body>
-    @include('Navbar.navbar')
     <div class="container">
         @yield('container')
     </div>

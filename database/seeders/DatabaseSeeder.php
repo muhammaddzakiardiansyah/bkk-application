@@ -83,20 +83,23 @@ class DatabaseSeeder extends Seeder
             'file_logo' => 'google.jpg'
         ]);
         Perusahaan::create([
-            'perusahaan' => 'Tani Koi',
-            'file_logo' => 'tanikoi.jpg'
+            'perusahaan' => 'PT Astra Motor',
+            'file_logo' => 'astra.jpg'
         ]);
 
         Loker::create([
             'perusahaan_id' => '1',
+            'judul_loker' => 'Backend Developer',
             'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo quo, eligendi modi doloremque aperiam aliquid hic dolores blanditiis.'
         ]);
         Loker::create([
             'perusahaan_id' => '3',
+            'judul_loker' => 'Montir',
             'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo quo, eligendi modi doloremque aperiam aliquid hic dolores blanditiis.'
         ]);
         Loker::create([
             'perusahaan_id' => '2',
+            'judul_loker' => 'Frontend Developer',
             'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo quo, eligendi modi doloremque aperiam aliquid hic dolores blanditiis.'
         ]);
     }

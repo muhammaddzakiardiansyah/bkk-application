@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\LokerController;
 use App\Models\Alumni;
 use App\Models\Loker;
 use Illuminate\Support\Facades\Route;
@@ -21,16 +23,12 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/alumni', function () {
-    return view('Dashboard.alumni', [
-        'active' => 'alumni',
-        'alumnis' => Alumni::all()
-    ]);
+Route::get('/login', function () {
+     return view('Dashboard.Login.login', [
+        'active' => 'Login Admin'
+     ]);
 });
 
-Route::get('/loker', function () {
-    return view('Dashboard.loker', [
-        'active' => 'loker',
-        'lokers' => Loker::all()
-    ]);
-});
+Route::resource('/alumni', AlumniController::class);
+
+Route::resource('/loker', LokerController::class);

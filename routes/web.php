@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\LokerController;
 use App\Models\Alumni;
@@ -23,10 +24,13 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/login', function () {
-     return view('Dashboard.Login.login', [
-        'active' => 'Login Admin'
-     ]);
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::get('/pageadmin', function() {
+    return view('PageAdmin.index', [
+        'active' => 'Admin'
+    ])->middleware('auth');
 });
 
 Route::resource('/alumni', AlumniController::class);

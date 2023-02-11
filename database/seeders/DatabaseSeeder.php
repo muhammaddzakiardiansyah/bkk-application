@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\User;
 use App\Models\Alumni;
 use App\Models\Loker;
 use App\Models\Perusahaan;
@@ -24,6 +25,12 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        User::create([
+            'username' => 'budi',
+            'email' => 'budi@gmail.com',
+            'password' => bcrypt('12345')
+        ]);
 
         Alumni::create([
             'nama_alumni' => 'paijo',

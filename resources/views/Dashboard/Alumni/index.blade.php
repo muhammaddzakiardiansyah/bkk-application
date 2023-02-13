@@ -28,7 +28,7 @@
           <div class="card mb-3 mt-5" style="max-width: 540px;">
             <div class="row g-0">
             <div class="col-md-4">
-                <img src="https://source.unsplash.com/1500x1800" class="img-fluid rounded-start" alt="...">
+                <img src="{{ asset('storage/'.$alumni->images) }}" class="img-fluid rounded-start" alt="foto alumni">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -36,7 +36,7 @@
                 <h5 class="card-text">Jurusan : {{ $alumni->jurusan }}</h5>
                 <h5 class="card-text">Lulusan :{{ $alumni->thn_lulus }}</h5>
                 <h5 class="card-text">Status : {{ $alumni->status }}</h5>
-                <a href="{{ url('/alumni/' . $alumni->id) }}" class="badge bg-info text-decoration-none">Lihat Profil</a>
+                <a href="{{ url('/alumni/' . $alumni->id) }}" class="badge bg-info mt-5 text-decoration-none">Lihat Profil</a>
                 </div>
             </div>
             </div>

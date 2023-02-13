@@ -3,8 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\LokerController;
-use App\Models\Alumni;
-use App\Models\Loker;
+use App\Http\Controllers\PageAdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,13 +24,14 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+
 Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/pageadmin', function() {
-    return view('PageAdmin.index', [
-        'active' => 'Admin'
-    ])->middleware('auth');
-});
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/pageadmin', [PageAdminController::class, 'index'])->middleware('auth');
+
+Route::get('/pageadmin/alumni', [PageAdminController::class, 'alumni'])->middleware('auth');
 
 Route::resource('/alumni', AlumniController::class);
 

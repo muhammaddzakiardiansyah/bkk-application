@@ -16,11 +16,11 @@ class AlumniController extends Controller
     {
         $alumnis = Alumni::latest();
 
-        if(request('search')) {
+        if (request('search')) {
             $alumnis->where('nama_alumni', 'like', '%' . request('search') . '%')
-                    ->orWhere('jurusan', 'like', '%' .request('search') . '%')
-                    ->orWhere('thn_lulus', 'like', '%' .request('search') . '%')
-                    ->orWhere('status', 'like', '%' .request('search') . '%');
+                ->orWhere('jurusan', 'like', '%' . request('search') . '%')
+                ->orWhere('thn_lulus', 'like', '%' . request('search') . '%')
+                ->orWhere('status', 'like', '%' . request('search') . '%');
         }
         return view('Dashboard.Alumni.index', [
             'active' => 'alumni',
@@ -48,17 +48,20 @@ class AlumniController extends Controller
      */
     public function store(Request $request)
     {
-        $rule = [
+        $validation = $request->validate([
             'nama_alumni' => 'required',
             'jurusan' => 'required',
             'thn_lulus' => 'required',
+            'images' => 'required|file|max:1024',
             'status' => 'required'
-        ];
+        ]);
 
-        $validation = $request->validate($rule);
+        if ($request->file('images')) {
+            $validation['images'] = $request->file('images')->store('profile-images');
+        }
+
         Alumni::create($validation);
         return redirect('/alumni')->with('success', 'Data berhasil ditambahkan');
-
     }
 
     /**

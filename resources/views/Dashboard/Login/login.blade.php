@@ -22,7 +22,14 @@
 
     </head>
     <body class="text-center">
-        
+        @if (session()->has('gagal'))
+            <div class="form-floating">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('gagal') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+            </div>
+        @endif
     <main class="form-signin w-100 m-auto">
     <form action="{{ url('/login') }}" method="post">
       @csrf
@@ -30,16 +37,26 @@
         <h1 class="h3 mb-3 fw-normal">Please Login</h1>
 
         <div class="form-floating">
-        <input type="text" name="username" class="form-control" id="floatingInput" placeholder="username">
-        <label for="floatingInput">Username</label>
+            <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="username" value="{{ old('username') }}">
+            <label for="username">Username</label>
+            @error('username')
+                <div class="invalid-feedback">
+                    <p>Username harus diisi!</p>
+                </div>
+            @enderror
         </div>
         <div class="form-floating">
-        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
+            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" value="{{ old('email') }}">
+            <label for="email">Email address</label>
+            @error('email')
+                <div class="invalid-feedback">
+                    <p>Email harus diisi!</p>
+                </div>
+            @enderror
         </div>
         <div class="form-floating">
-        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+            <label for="password">Password</label>
         </div>
 
         <div class="checkbox mb-3">

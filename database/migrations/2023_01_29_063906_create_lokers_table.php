@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('lokers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('perusahaan_id');
+            $table->string('image');
             $table->string('judul_loker');
+            $table->string('slug');
             $table->text('deskripsi');
             $table->timestamps();
         });

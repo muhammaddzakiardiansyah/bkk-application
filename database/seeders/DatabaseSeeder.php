@@ -27,55 +27,63 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::create([
-            'username' => 'budi',
-            'email' => 'budi@gmail.com',
-            'password' => bcrypt('12345')
+            'username' => 'budiyanto2',
+            'email' => 'budiyanto@gmail.com',
+            'password' => bcrypt('password')
         ]);
 
         Alumni::create([
             'nama_alumni' => 'paijo',
+            'images' => 'photo1.jpg',
             'jurusan' => 'rpl',
             'thn_lulus' => '2024',
             'status' => 'bekerja'
         ]);
         Alumni::create([
             'nama_alumni' => 'sukron',
+            'images' => 'photo1.jpg',
             'jurusan' => 'rpl',
             'thn_lulus' => '2024',
             'status' => 'bekerja'
         ]);
         Alumni::create([
             'nama_alumni' => 'arba',
+            'images' => 'photo1.jpg',
             'jurusan' => 'tsm',
             'thn_lulus' => '2024',
             'status' => 'bekerja'
         ]);
         Alumni::create([
             'nama_alumni' => 'ara',
+            'images' => 'photo1.jpg',
             'jurusan' => 'tb',
             'thn_lulus' => '2024',
             'status' => 'bekerja'
         ]);
         Alumni::create([
             'nama_alumni' => 'zulfa',
+            'images' => 'photo1.jpg',
             'jurusan' => 'tsm',
             'thn_lulus' => '2024',
             'status' => 'bekerja'
         ]);
         Alumni::create([
             'nama_alumni' => 'arif',
+            'images' => 'photo1.jpg',
             'jurusan' => 'tkr',
             'thn_lulus' => '2024',
             'status' => 'bekerja'
         ]);
         Alumni::create([
             'nama_alumni' => 'fika',
+            'images' => 'photo1.jpg',
             'jurusan' => 'tkj',
             'thn_lulus' => '2024',
             'status' => 'bekerja'
         ]);
         Alumni::create([
             'nama_alumni' => 'tika',
+            'images' => 'photo1.jpg',
             'jurusan' => 'tb',
             'thn_lulus' => '2024',
             'status' => 'bekerja'
@@ -96,20 +104,24 @@ class DatabaseSeeder extends Seeder
 
         Loker::create([
             'perusahaan_id' => '1',
+            'image' => 'image.jpg',
             'judul_loker' => 'Backend Developer',
-            'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo quo, eligendi modi doloremque aperiam aliquid hic dolores blanditiis.'
+            'slug' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non recusandae assumenda nam facere, molestias doloremque soluta ex minima esse.',
+            'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo quo, eligendi modi doloremque aperiam aliquid hic dolores blanditiis. Consequuntur reiciendis ducimus magni illo quo. Architecto nobis voluptas molestias eos?'
         ]);
         Loker::create([
             'perusahaan_id' => '3',
+            'image' => 'image.jpg',
             'judul_loker' => 'Montir',
-            'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo quo, eligendi modi doloremque aperiam aliquid hic dolores blanditiis.'
+            'slug' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non recusandae assumenda nam facere, molestias doloremque soluta ex minima esse.',
+            'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo quo, eligendi modi doloremque aperiam aliquid hic dolores blanditiis. Consequuntur reiciendis ducimus magni illo quo. Architecto nobis voluptas molestias eos?'
         ]);
         Loker::create([
             'perusahaan_id' => '2',
+            'image' => 'image.jpg',
             'judul_loker' => 'Frontend Developer',
-            'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo quo, eligendi modi doloremque aperiam aliquid hic dolores blanditiis.'
+            'slug' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non recusandae assumenda nam facere, molestias doloremque soluta ex minima esse.',
+            'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo quo, eligendi modi doloremque aperiam aliquid hic dolores blanditiis. Consequuntur reiciendis ducimus magni illo quo. Architecto nobis voluptas molestias eos?'
         ]);
     }
 }
-
-

@@ -6,7 +6,6 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
         <form action="/logout" method="post">
@@ -67,60 +66,62 @@
   
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Data Alumni</h1>
+          <h1 class="h2">Edit Data Alumni</h1>
           <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-             <!-- Button trigger modal -->
-                
-                
-                <!-- Modal -->
+             
                 
             </div>
           </div>
         </div>
-  
-        <h2>Data Alumni Terbaru</h2>
-        @if (session()->has('success'))
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="row">
+            <div class="col-md-8">
+              <form action="{{ url('/alumni/' . $alumni->id) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('patch')
+                <div class="mb-3">
+                  <label for="nama_alumni" class="form-label">Nama</label>
+                  <input type="text" class="form-control" id="nama_alumni" placeholder="Masukan nama" name="nama_alumni" value="{{ old('nama_alumni', $alumni->nama_alumni) }}">
+                </div>
+                <div class="mb-3">
+                  <label for="images" class="form-label">Image</label>
+                  <input type="file" class="form-control" id="images" name="images" value="{{ old('images') }}" onchange="previewImage()">
+                </div>
+                <div class="mb-3">
+                  <label for="jurusan" class="form-label">Jurusan</label>
+                  <select class="form-select" id="jurusan" name="jurusan">
+                    <option selected>Pilih Jurusan</option>
+                    <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+                    <option value="Teknik Bisnis Sepeda Motor">Teknik Bisnis Sepeda Motor</option>
+                    <option value="Teknik Kendaraan Ringan Otomotif">Teknik Kendaraan Ringan Otomotif</option>
+                    <option value="Tata Busana">Tata Busana</option>
+                    <option value="Teknik Komputer Jaringan">Teknik Komputer Jaringan</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="thn_lulus" class="form-label">Lulusan</label>
+                  <select class="form-select" id="jurusan" name="thn_lulus">
+                    <option selected>Pilih Tahun Lulus</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="status" class="form-label">Status</label>
+                  <select class="form-select" id="status" name="status">
+                    <option selected>Pilih Status</option>
+                    <option value="Bekerja">Bekerja</option>
+                    <option value="Belum Bekerja">Belum Bekerja</option>
+                    <option value="Kuliah">Kuliah</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+            </div>
           </div>
-        @endif
-        <div class="table-responsive">
-          <table class="table table-striped table-sm">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Jurusan</th>
-                <th scope="col">Tahun Lulus</th>
-                <th scope="col">Status</th>
-                <th scope="col">Dibuat Pada</th>
-                <th scope="col">Tools</th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($alumnis as $alumni)
-                  <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $alumni->nama_alumni }}</td>
-                    <td>{{ $alumni->jurusan }}</td>
-                    <td>{{ $alumni->thn_lulus }}</td>
-                    <td>{{ $alumni->status }}</td>
-                    <td>{{ $alumni->created_at->diffForHumans() }}</td>
-                    <td>
-                        <a href="{{ url('/alumni/' . $alumni->id . '/edit') }}" class="badge bg-warning text-decoration-none">Edit</a>
-                        <form action="{{ url('/alumni/' . $alumni->id) }}" method="post" class="d-inline">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="badge bg-danger border-0" onclick="confirm('Yakin ingin menghapus data ini?')">Delete</button>
-                        </form>
-                    </td>
-                  </tr>
-                @endforeach
-            </tbody>
-          </table>
-        </div>
       </main>
     </div>
   </div>

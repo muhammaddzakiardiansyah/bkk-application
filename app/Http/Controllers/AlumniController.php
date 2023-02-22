@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alumni;
+use Illuminate\Support\Facades\Storage;
 
 class AlumniController extends Controller
 {
@@ -84,7 +85,8 @@ class AlumniController extends Controller
      */
     public function edit($id)
     {
-        //
+        $alumni = Alumni::find($id);
+        return view('PageAdmin.createAlumni', ['active' => 'Edit Data'])->with('alumni', $alumni);
     }
 
     /**
@@ -96,7 +98,24 @@ class AlumniController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $alumni = Alumni::find($id);
+        $input = $request->validate([
+            'nama_alumni' => 'required',
+            'jurusan' => 'required',
+            'thn_lulus' => 'required',
+            'images' => 'required|file|max:1024',
+            'status' => 'required'
+        ]);
+
+        if ($request->file('images')) {
+            if ($alumni->images) {
+                Storage::delete($alumni->images);
+            }
+            $input['images'] = $request->file('images')->store('profile-images');
+        }
+
+        $alumni->update($input);
+        return redirect('/pageadmin/alumni')->with('success', 'Berhasil edit data alumni');
     }
 
     /**
@@ -107,6 +126,9 @@ class AlumniController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $alumni = Alumni::find($id);
+        Storage::delete($alumni->images);
+        Alumni::destroy($alumni->id);
+        return redirect('/pageadmin/alumni')->with('success', 'Data berhasil dihapus!');
     }
 }
